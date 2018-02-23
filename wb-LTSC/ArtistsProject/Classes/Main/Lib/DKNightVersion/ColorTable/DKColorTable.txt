@@ -1,0 +1,9 @@
+NORMAL   NIGHT    RED
+#ffffff  #1c1c1c  #fafafa BG
+#aaaaaa  #313131  #aaaaaa SEP
+#0000ff  #ffffff  #fa0000 TINT
+#030303  #909090  #000000 TEXT
+#ffffff  #444444  #ffffff BAR
+#f0f0f0  #222222  #dedede HIGHLIGHTED
+#ededed  #1c1c1c  #fafafa SHAREBG_TOP
+#ffffff  #333333  #fafafa SHAREBG_BOTTOM
