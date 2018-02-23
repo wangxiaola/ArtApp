@@ -1,0 +1,38 @@
+一、获取直播推流地址（主播客户端发起直播的地址）
+请求方式：post
+请求参数：ac=getzhiboauth
+		  uid-用户uid
+		  privatekey-私钥签名串
+		  app-直播房间标识，ch1-ch9
+		  stream-直播流标识，stream1-stream10
+返回结果：zhibo-rtmp直播鉴权推流路径
+
+二、获取直播播放地址（观众客户端观看直播的地址）
+请求方式：post
+请求参数：ac=getzhibourl
+		  uid-用户uid
+		  privatekey-私钥签名串
+		  app-直播房间标识，ch1-ch9
+		  stream-直播流标识，stream1-stream10
+返回结果：zhibo-rtmp直播鉴权后的播放路径
+
+
+客户端推流sdk
+https://help.aliyun.com/document_detail/61989.html?spm=a2c4g.11186623.6.734.nM5toI
+播放器sdk
+https://help.aliyun.com/document_detail/62352.html?spm=a2c4g.11186623.6.741.eci6GU
+
+
+
+
+直播聊天采用node.js、socket.io搭建，服务域名chat.artart.cn
+ios参考：http://www.jb51.net/article/111169.htm
+android参考：http://blog.csdn.net/l_lhc/article/details/68950278
+
+进入聊天标识：login，触发login广播，包含username用户名和userid用户id两个字段
+退出聊天标识：disconnect，触发logout广播，包含username用户名和userid用户id两个字段
+发送文本聊天标识：message，触发message广播，包含username用户名和content聊天内容两个字段
+
+表情做成一种文本标识，以[[:code]形式实现，其中code为表情文本标识，匹配到这种格式就解析成相应表情图片，或者用emoji？
+
+语音推送流程是跟app发语音一样上传到又拍云，将上传后获得的语音文件地址链接发送一条message广播，内容为[[{url}]]，其中url为语音文件url，客户端解析出url使用音频播放组件展示和播放
