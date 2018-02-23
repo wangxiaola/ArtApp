@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SharesdkAppKey</key>
+	<string>d_3abda5332ec4</string>
+	<key>UMAppkey</key>
+	<string>5440ba666c738f8358004078</string>
+	<key>weiboAppKey</key>
+	<string>3671016885</string>
+	<key>weiboAppSecret</key>
+	<string>5c87871f3b574d7663587045e070a030</string>
+	<key>weixin</key>
+	<string>wx09435b6cf2d9876a</string>
+	<key>weixinAppSecret</key>
+	<string>63bfdea8a37f7a54bc53fff11e22c7b9</string>
+	<key>wxpay</key>
+	<string>wx09435b6cf2d9876a</string>
+</dict>
+</plist>

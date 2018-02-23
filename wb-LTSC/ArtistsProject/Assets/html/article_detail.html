@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>新闻详情</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="format-detection" content="telephone=no" />
+  <!-- <script src="js/fontbase.js"></script> -->
+  <!-- <link rel="stylesheet" type="text/css" href="ionic-release/css/ionic.css"> -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/debug.css">
+  <link href="css/common.css" rel="stylesheet">
+  <link href="css/detail.css" rel="stylesheet">
+  <link href="css/comment.css" rel="stylesheet">
+  <!-- <link href="css/detail-ionic-adaption.css" rel="stylesheet"> -->
+  <!--   <link href="css/roboto.min.css" rel="stylesheet">
+  <link href="css/material-fullpalette.min.css" rel="stylesheet">
+  <link href="css/ripples.min.css" rel="stylesheet"> -->
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <script>
+  window.PointerEvent = undefined;
+  </script>
+</head>
+
+<body>
+  <div class="container container-theme-day" ng-controller="MainCtrl">
+    <div infinite-scroll='loadMore()' infinite-scroll-disabled='!(canLoadMore && hasMoreComments)' infinite-scroll-distance='1'>
+      <div class="bs-docs-section">
+        <div class="article-atlas">
+          <div class="atlas-wrapper">
+            <div class="demo-box">
+              <img ng-repeat="item in smeta track by $index" class="demo-img" src="{{item.url}}" ng-click="galleryClick(item.url)">
+            </div>
+          </div>
+        </div>
+        <div class="title-section">
+          <h4 id="article-title" class="font-pingfang">{{articleDetail.post_title}}</h4>
+          <div class="post-time-bar" ng-show="articleDetail.start_time">  
+            <div class="post-time">
+              {{articleDetail.start_time}}至{{articleDetail.end_time}}
+            </div>          
+            <div class="post-medium">
+              {{articleDetail.medium}}
+            </div>
+            <div class="post-addr">
+              {{articleDetail.city}}
+            </div>            
+          </div>
+          <div class="post-time-bar" ng-hide="articleDetail.start_time">            
+            <div class="post-time">
+              {{articleDetail.post_date}}
+            </div>
+            <div class="author-name">
+              {{articleDetail.author}}
+            </div>
+          </div>
+        </div>
+        <div class="content-section">
+          <div id="article-content" ng-bind-html="articleDetail.content">
+          </div>
+        </div>
+        <div class="bs-comment-section" id="comment-section">
+          <a id="bottom"></a>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 total-comment-text">
+            <div ng-show='hotComments.length == 0' class="div-inline gray-color">暂无评论</div>
+            <div ng-if="commentsTotalNum > 0" class="div-inline total-comment-cnt">{{commentsTotalNum}}条评论</div>
+          </div>
+        </div>
+        <div style="padding:0 10px;">
+          <div class="light-divider"></div>
+        </div>
+        <div class="comments-box hot-comments-box">
+          <div class="comment-title">
+            <img src="img/hot_comments@2x.png" alt="" class="comments-tag">
+          </div>
+          <div class="comment" ng-repeat="comment in hotComments track by $index" data-uid="{{comment.uid}}" ng-click="hotCommentClick()">
+            <div class="user-info-box left-right-align">
+              <div class="portal-box">
+                <span ng-if="comment.anonymity == 0 && comment.avatar.length != 0" class="portal"> <img  src="{{comment.avatar}}" alt="" ></span>
+                <span ng-if="comment.anonymity == 1 || comment.avatar.length == 0" class="portal"> <img src="img/default.png" ></span>
+                <span class="user-name" ng-class="{'user-name-night':themeStyle}" ng-if="comment.anonymity == 0">{{comment.nickname}}</span>
+                <span class="user-name" ng-class="{'user-name-night':themeStyle}" ng-if="comment.anonymity == 1">匿名</span>
+              </div>
+            </div>
+            <div class="user-comment-box">
+              <div class="comment-cont">
+                {{comment.comment_content}}
+              </div>
+              <div class="comment-published">
+                <span class="published-time">{{comment.comment_date}}</span>
+                <span class="reply-to" ng-click="replyComment(comment.comment_id,'张三')">回复</span>
+              </div>
+            </div>
+            <div class="me-upvoted" ng-click="upvoteComment(comment.comment_id,hotComments,$event)">
+              <span ng-class="{'upvoted-img':true,'praised':comment.is_praise}"></span>
+              <span class="total-upvoted-number">{{comment.praise}}</span>
+            </div>
+          </div>
+        </div>
+        <!-- <div id="comments">
+          <div class="row comment-row" ng-repeat="comment in comments track by $index">
+            <div class="col-sm-12" data-index="{{$index}}" ng-click="onClickComment();$event.stopPropagation();">
+              <div class="post_comment" style="">
+                <div class="headimg-container" ng-click="readUserinfo(comment.userid);$event.stopPropagation();">
+                  <img alt="" class="headimg" data-id="{{comment.userid}}" src="{{comment.headimg}}">
+                </div>
+                <div class="comment-body" style="">
+                  <div class="left-right-align">
+                    <div class="post-comment-name">{{comment.username}}</div>
+                    <div class="verticle-center-box title-right comment-item-right" data-id="{{comment.id}}" data-upvote="{{comment.upvoteStatus}}">
+                      <img class="upvote-comment" ng-click="upvoteComment($index);$event.stopPropagation();" width="13" height="15" src="img/upvote.png" />
+                      <div ng-click="upvoteComment($index);$event.stopPropagation();" class="gray-color div-inline num-upvote upvote-comment">{{comment.upvote}}</div>
+                      <img class="reply-comment" ng-click="replyComment(comment.userid, comment.username);$event.stopPropagation();" width="18" height="14" src="img/case_comment_top.png" />
+                      <div class="gray-color div-inline reply-comment"></div>
+                    </div>
+                  </div>
+                  <div class="post-time gray-color">{{comment.time}}</div>
+                  <div class='comment-box'>
+                    <div class="comment-cont">{{comment.content}}</div>
+                  </div>
+                  <div class="reply">
+                    <div class="comment-over">更多</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div ng-show='canLoadMore && hasMoreComments' class="comment-loading">加载中...</div>
+    </div>
+    <!-- <ion-infinite-scroll ng-if="canLoadMore && hasMoreComments" on-infinite="loadMore()" distance="1%" spinner="bubbles"> -->
+    <!-- </ion-infinite-scroll> -->
+    <!-- </ion-content> -->
+    <!-- ng-if="articleLoaded && hasMoreComments"-->
+    <script src="js/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <script src="js/lodash.min.js"></script>
+    <script src="js/debug.js"></script>
+    <script src="js/jsbridge.js"></script>
+    <script>
+    $(document).ready(function() {
+      $('#article-content img').css('width', '100%');
+      $('#article-content img').css('height', '');
+
+      // $("span").removeAttr("style");
+      // $("span").css("font-size","18px!important;");
+      //var containerWidth = $('.container').width();
+      //containerWidth = containerWidth*0.9;
+
+      // $('embed').width(containerWidth);
+      // $('embed').height((containerWidth/6)*5);
+    });
+    </script>
+    <script type="text/javascript" src="js/short_num.js"></script>
+    <script type="text/javascript">
+    var jsbridge = JSBridge({
+      connectApp: true
+    });
+    var app = {
+      articleDetail: true,
+      comment: false
+    }
+    </script>
+    <script type="text/javascript" src="mock/articleDetailMock.js">
+    </script>
+    <!-- <script type="text/javascript" src="ionic-release/js/ionic.bundle.min.js"></script> -->
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-route.min.js"></script>
+    <script type="text/javascript" src="js/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="js/ng-infinite-scroll.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <script type="text/javascript" src="js/app_detail.js"></script>
+    <script>
+    </script>
+    <script type="text/javascript">
+    //   var jsbridge = JSBridge({connectApp: true});
+    //   jsbridge.ready(function() {
+
+    //   jsbridge.pageReady();
+
+    //   jsbridge.addHandler(this, "module", "__webviewHandler", function(data, responseCallback) {
+    //   H5Log("newHandlerDemo is called");
+    //   var responseData = "newHandlerDemo finished";
+    //   responseCallback(responseData);
+    //  });
+
+    //   jsbridge.addHandler(this, "module", "loadHtmlContent", function(data) {
+    //     H5Log("loadHtmlContent" + data);
+    //     alert(data);
+    //     $("#article-content").html(JSON.stringify(data));
+    //     // document.getElementById("article-content").innerHTML = JSON.stringify(data);
+    //  });
+
+    // });
+    </script>
+</body>
+
+</html>

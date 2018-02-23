@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+  <meta charse t="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>人物详情页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="format-detection" content="telephone=no" />
+  <script src="js/fontbase.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/debug.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/detail.css">
+  <link href="css/comment.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/person_detail_style.css">
+</head>
+
+<body>
+  <div class="container  container-theme-day" ng-controller="MainCtrl">
+    <!--  <div infinite-scroll='loadMore()' infinite-scroll-disabled='!(canLoadMore && hasMoreComments)' infinite-scroll-distance='1'> -->
+    <div class="artist-box">
+      <div class="artist-img-border-box">
+        <div class="artist-img-box">
+          <img src="{{personDetail.photo}}" alt="" class="artist-img">
+        </div>
+      </div>
+      <div class="artist-intro-box">
+        <div class="artist-name">{{personDetail.name}}</div>
+        <div class="artist-intro">
+          {{personDetail.intro}}
+        </div>
+      </div>
+    </div>
+    <ul class="section-nav">
+      <li class="nav-item current" ng-click="clickAritistSegment(1)">
+        <div class="nav-txt current">作品</div>
+      </li>
+      <li class="nav-item" ng-click="clickAritistSegment(2)">
+        <div class="nav-txt">评论</div>
+      </li>
+       <li class="nav-item" ng-click="clickAritistSegment(3)">
+        <div class="nav-txt">艺术家说</div>
+      </li>
+      <!--  <li class="nav-item last" ng-click="clickAritistSegment(4)">
+        <div class="nav-txt ">学术著作</div>
+      </li> -->
+    </ul>
+
+    <div class="section publications-section">
+      <div infinite-scroll='loadMore()' infinite-scroll-disabled='!(canLoadMore && hasMoreWorkData)' infinite-scroll-distance='1'>
+        <div class="publications-intro">
+          <li ng-click="clickPubItem(works.work_id)" class="pub-item col-xs-4" ng-repeat="works in personWorks track by $index" data-uid="{{works.work_id}}">
+            <div class="img-box">
+              <img src="{{works.work_url}}">
+            </div>
+            <p class="pub-title">{{works.work_name}}</p>
+          </li>
+        </div>
+      </div>
+      <div ng-show='canLoadMore && hasMoreWorkData' class="comment-loading">加载中...</div>
+      <div class="shown-all" ng-show="!(canLoadMore && hasMoreWorkData)">暂无更多</div>
+    </div>
+    <div class="section information-section hide">
+      <div infinite-scroll='loadMore()' infinite-scroll-disabled='!(canLoadMore && hasMoreInfoData)' infinite-scroll-distance='1'>
+        <div class="information-intro">
+          <li class="info-list-item" ng-repeat="info in personInfo track by $index" data-mid="info.post_id" ng-click="clickAritistItem(info.post_id,3)">
+            <!-- <img src="{{info.post_image}}"> -->
+            <div class="info-des">
+              {{info.post_title}}
+            </div>
+          </li>
+        </div>
+      </div>
+      <div ng-show='canLoadMore && hasMoreInfoData' class="comment-loading">加载中...</div>
+      <div class="shown-all" ng-show="!(canLoadMore && hasMoreInfoData)">暂无更多</div>
+    </div>
+    <div class="section life-time-section  hide">
+        <div class="lifetime-intro" ng-bind-html="personDetail.content">
+        </div>
+        <div style="padding:0 10px;">
+            <div class="light-divider"></div>
+        </div>
+        <div class="comments-box hot-comments-box">
+            <div class="comment-title">
+                <img src="img/hot_comments@2x.png" alt="" class="comments-tag">
+                    </div>
+            <!-- ngRepeat: comment in hotComments track by $index -->
+            <div class="comment" ng-repeat="comment in hotComments track by $index" data-uid="{{comment.uid}}" ng-click="hotCommentClick()">
+                <div class="user-info-box left-right-align">
+                    <div class="portal-box">
+                        <span class="portal" ng-if="comment.anonymity == 0 && comment.avatar.length != 0">  <img  src="{{comment.avatar}}" alt="" ></span>
+                        <span class="portal" ng-if="comment.anonymity == 1 || comment.avatar.length == 0"><img src="img/default.png" ></span>
+                        <span class="user-name" ng-class="{'user-name-night':themeStyle}" ng-if="comment.anonymity == 0">{{comment.nickname}}</span>
+                        <span class="user-name" ng-class="{'user-name-night':themeStyle}" ng-if="comment.anonymity == 1">匿名</span>
+                    </div>
+                </div>
+                <div class="user-comment-box">
+                    <div class="comment-cont ng-binding">
+                        {{comment.comment_content}}
+                    </div>
+                    <div class="comment-published">
+                        <span class="published-time ng-binding">{{comment.comment_date}}</span>
+                        <span class="reply-to" ng-click="replyComment(comment.comment_id,'张三')">回复</span>
+                    </div>
+                </div>
+                <div class="me-upvoted" ng-click="upvoteComment(comment.comment_id,hotComments,$event)">
+                    <span ng-class="{'upvoted-img':true,'praised':comment.is_praise}"></span>
+                    <span class="total-upvoted-number">{{comment.praise}}</span>
+                </div>
+            </div>
+            <!-- end ngRepeat: comment in hotComments track by $index -->
+        </div>
+    </div>
+    <!--    <div class="section composition-section hide">
+      <div infinite-scroll='loadMore()' infinite-scroll-disabled='!(canLoadMore && hasMoreAdvData)' infinite-scroll-distance='1'>
+        <div class="composition-intro">
+          <li class="com-list-item" ng-repeat="advise in personAdvise track by $index" data-uid="{{advise.post_id}}" ng-click="clickAritistItem(advise.post_id,4)">{{advise.post_title}}</li>
+        </div>
+      </div>
+      <div ng-show='canLoadMore && hasMoreAdvData' class="comment-loading">加载中...</div>
+    </div> -->
+  </div>
+  <!-- </div> -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/lodash.min.js"></script>
+  <script src="js/debug.js"></script>
+  <script src="js/jsbridge.js"></script>
+  <script type="text/javascript" src="js/short_num.js"></script>
+  <script type="text/javascript">
+  var jsbridge = JSBridge({
+    connectApp: true
+  });
+  var app = {
+    personDetail: true,
+    comment: false
+  }
+  </script>
+  <script type="text/javascript" src="mock/articleDetailMock.js">
+  </script>
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/angular-route.min.js"></script>
+  <script type="text/javascript" src="js/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="js/ng-infinite-scroll.min.js"></script>
+  <script type="text/javascript" src="js/app_person_detail.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+  padding-top: 0;
+  font-family: "微软雅黑";
+  font-size: 16px;
+}
+
+li {
+  list-style: none;
+}
+
+#banner {
+  border-bottom: none
+}
+
+.bs-docs-section {
+  margin-top: 0;
+  padding-bottom: 10px;
+}
+
+.bs-component {
+  position: relative
+}
+
+.bs-component .modal {
+  position: relative;
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  z-index: 1;
+  display: block;
+}
+
+.bs-component .modal-dialog {
+  width: 90%
+}
+
+.bs-component .popover {
+  position: relative;
+  display: inline-block;
+  width: 220px;
+  margin: 20px
+}
+
+footer {
+  margin: 5em 0
+}
+
+footer li {
+  float: left;
+  margin-right: 1.5em;
+  margin-bottom: 1.5em
+}
+
+footer p {
+  clear: left;
+  margin-bottom: 0
+}
+
+@media (max-width:767px) {
+  #banner {
+    margin-bottom: 2em;
+    text-align: center
+  }
+}
+
+
+/* 公用样式：评论样式 */
+
+
+/* 左右对齐 */
+
+.left-right-align {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.container {
+  padding: 2rem 2rem 0rem;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.container.has-reply {
+  padding: 2rem 2rem 6rem;
+}
+
+.comments-section {
+  margin-top: 1rem;
+}
+
+.tags-row {
+  margin: -1rem 0 0 -1rem;
+  overflow: hidden;
+}
+
+.tag {
+  margin: 1rem 0 0 1rem;
+  float: left;
+  display: block;
+  padding: 5px 15px;
+  color: rgb(89, 87, 87);
+  background-color: rgb(238, 238, 238);
+  border-radius: 10px;
+  font-size: 1.2rem;
+}
+
+.total-upvoted-box {
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgb(200, 199, 204);
+}
+
+.upvoted-img {
+  width: 1.7rem;
+  height: 1.6rem;
+  vertical-align: middle;
+  background: url(../img/like@2x.png) 0 0/100% 100% no-repeat;
+}
+
+.upvoted-img.praised {
+  background: url(../img/like@2x-red.png) 0 0/100% 100% no-repeat;
+}
+
+.total-upvoted-number {
+  padding-left: 5px;
+  font-size: 1rem;
+  color: rgb(170, 170, 170);
+  vertical-align: bottom;
+}
+
+.expose {
+  font-size: 1.2rem;
+  color: rgb(170, 170, 170);
+}
+
+.comments-title {}
+
+.comments-tag {
+  width: 25%;
+}
+
+.comment {
+  border-bottom: 1px solid rgb(200, 199, 204);
+  padding-top: 1rem;
+}
+
+.portal-box {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  align-items: center;
+}
+
+.portal {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.user-name {
+  font-size: 1.4rem;
+  color: rgb(0, 46, 103);
+  padding-left: 0.75rem;
+}
+
+.user-name-night {
+  color: rgb(93, 102, 116);
+}
+
+.me-upvoted {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  align-items: center;
+}
+
+.user-comment-box {
+  padding: 0 3rem;
+}
+
+.comment-cont {
+  font-size: 1.4rem;
+  padding: 1rem 0;
+}
+
+.comment-published {
+  font-size: 1.4rem;
+  padding-bottom: 1rem;
+}
+
+.reply-to {
+  padding-left: 1rem;
+}
+
+.shown-all {
+  padding: 0.9rem 0 1.5rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.por {
+  position: relative;
+}

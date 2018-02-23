@@ -1,0 +1,95 @@
+#page_trace {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-size: 14px;
+  width: 100%;
+  z-index: 999999;
+  color: #000;
+  text-align: left;
+  font-family: &#39;
+  z-index: 1000;
+}
+
+#page_trace_tab {
+  background: white;
+  margin: 0;
+  height: 150px;
+}
+
+#page_trace_tab_tit {
+  height: 30px;
+  padding: 6px 12px 0;
+  border-bottom: 1px solid #ececec;
+  border-top: 1px solid #ececec;
+  font-size: 16px;
+}
+
+#page_trace_tab_tit span {
+  color: rgb(153, 153, 153);
+  padding-right: 12px;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  margin-right: 3px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+#page_trace_tab_cont {
+  overflow: auto;
+  height: 120px;
+  padding: 0;
+  line-height: 24px;
+}
+
+#page_trace_tab_cont > div {
+  display: none;
+}
+
+#page_trace_tab_cont > div > ol {
+  padding: 0;
+  margin: 0;
+}
+
+#page_trace_tab_cont > div > ol > li {
+  border-bottom: 1px solid #EEE;
+  font-size: 14px;
+  padding: 0 12px;
+  /* 左右不滚动 */
+  word-break: break-all;
+  text-align: justify;
+}
+
+#page_trace_close {
+  display: none;
+  text-align: right;
+  height: 15px;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  cursor: pointer;
+}
+
+#page_trace_open {
+  height: 30px;
+  float: right;
+  text-align: right;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  color: #000;
+  line-height: 30px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+#page_trace_open > div {
+  background: #232323;
+  color: #FFF;
+  padding: 0 6px;
+  float: right;
+  line-height: 30px;
+  font-size: 14px;
+}

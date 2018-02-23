@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AcademyHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOe-qn-fIO">
+                    <rect key="frame" x="15" y="10" width="110" height="30"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navi_menu" translatesAutoresizingMaskIntoConstraints="NO" id="iqV-Fg-e19">
+                            <rect key="frame" x="5" y="5" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="sqR-9l-eCV"/>
+                                <constraint firstAttribute="width" secondItem="iqV-Fg-e19" secondAttribute="height" multiplier="1:1" id="y0Y-GS-oZ3"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="课 程 推 荐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZD-Uh-Oiw">
+                            <rect key="frame" x="30" y="0.0" width="68" height="30"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.66274509800000003" green="0.12941176469999999" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="iqV-Fg-e19" firstAttribute="leading" secondItem="bOe-qn-fIO" secondAttribute="leading" constant="5" id="6g0-W4-8Gr"/>
+                        <constraint firstItem="iqV-Fg-e19" firstAttribute="centerY" secondItem="bOe-qn-fIO" secondAttribute="centerY" id="G2L-Yu-B34"/>
+                        <constraint firstItem="OZD-Uh-Oiw" firstAttribute="top" secondItem="bOe-qn-fIO" secondAttribute="top" id="aCk-IW-wGI"/>
+                        <constraint firstItem="OZD-Uh-Oiw" firstAttribute="leading" secondItem="iqV-Fg-e19" secondAttribute="trailing" constant="5" id="c12-WP-n4G"/>
+                        <constraint firstAttribute="width" constant="110" id="oIx-tt-jGg"/>
+                        <constraint firstAttribute="bottom" secondItem="OZD-Uh-Oiw" secondAttribute="bottom" id="xYK-Zz-5Ej"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I64-HC-ZAq">
+                    <rect key="frame" x="0.0" y="39" width="320" height="1"/>
+                    <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="dUq-nr-EUy"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="bOe-qn-fIO" secondAttribute="bottom" id="5Yr-yI-zk2"/>
+                <constraint firstItem="bOe-qn-fIO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="BdV-3U-WXu"/>
+                <constraint firstItem="bOe-qn-fIO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Hv9-vD-UUW"/>
+                <constraint firstAttribute="bottom" secondItem="I64-HC-ZAq" secondAttribute="bottom" id="Wo6-ok-Vhl"/>
+                <constraint firstAttribute="trailing" secondItem="I64-HC-ZAq" secondAttribute="trailing" id="qhx-fW-ApT"/>
+                <constraint firstItem="I64-HC-ZAq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vAT-k2-CDy"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageV" destination="iqV-Fg-e19" id="Bc0-cu-AXf"/>
+                <outlet property="title" destination="OZD-Uh-Oiw" id="DTL-GG-o5V"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="navi_menu" width="24" height="24"/>
+    </resources>
+</document>

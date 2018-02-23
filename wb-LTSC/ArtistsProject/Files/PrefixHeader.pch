@@ -1,0 +1,65 @@
+//
+//  PrefixHeader.pch
+//  ArtistProject
+//
+//  Created by HELLO WORLD on 2017/3/27.
+//  Copyright © 2017年 HELLO WORLD. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#endif /* Test_Prefix_pch */
+#ifdef __OBJC__
+//此部分倒入头文件或框架
+#import <UIKit/UIKit.h>
+#import "ArtMacro.h"
+#import "YTXHeader.h"
+#import "HControls.h"
+//
+#import "Masonry.h"
+#import "AFNetworking.h"
+#import "YYKit.h"
+#import "NSObject+YYModel.h"
+#import "TMCache.h"
+#import "MJRefresh.h"
+#import "MJExtension.h"
+#import "SDWebImageManager.h"
+#import "IDMPhotoBrowser.h"
+#import "HExtension.h"
+#import "UIImageView+WebCache.h"
+#import "NSMutableAttributedString+YTXCangyouquanCell.h"
+#import "HShareVC.h"
+#import "VoiceConverter.h"
+
+
+/******hello world*****/
+#import "Global.h"
+#import "SIAlertView.h"
+#import "PHNoResponse.h"
+#import "PHNODataView.h"
+#import "CustomLabel.h"
+#import "BaseController.h"
+#import "HomeListDetailVc.h"
+#import "MyHomePageDockerVC.h"
+#import "HPageViewController.h"
+#import "UIView+FindViewControler.h"
+#import "ArtRequest.h"
+#import "HHttpRequest.h"
+#import "ResultModel.h"
+#import "YTXPhotoscbkModel.h"
+#import "UIViewController+KNSemiModal.h"
+#import "UIViewController+IsLogon.h"
+#import "ArtUIHelper.h"
+#import "H5VC.h"
+#import "PublishDongtaiVC.h"
+#import "UILabel+YHBaseChangeDefaultFont.h"
+#import "AppDelegate.h"
+#import "ConstantFile.h"
+#import "GeneralConfigure.h"
+#import "UIViewController+NavigationBarBtn.h"
+
+
+//#import "ArtistsProject-Bridging-Header.h"
+
+#endif /* PrefixHeader_pch */

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="62" id="KGk-i7-Jjw" customClass="YTXInviteUserCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="320" height="61"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YZK-oo-otV">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="QIn-hQ-YCG"/>
+                            <constraint firstAttribute="height" constant="40" id="ydw-U2-Xeo"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天下美食" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJV-tU-tXk">
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邀请码：9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="397-ez-7lT">
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-11-30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6U-z8-hwZ">
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRe-Bn-s08">
+                        <frame key="frameInset" minX="149" minY="5" width="41" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="+关注">
+                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="V6U-z8-hwZ" firstAttribute="leading" secondItem="397-ez-7lT" secondAttribute="trailing" constant="30" id="90n-9N-EBN"/>
+                    <constraint firstItem="397-ez-7lT" firstAttribute="leading" secondItem="sJV-tU-tXk" secondAttribute="leading" id="RdP-NK-LNu"/>
+                    <constraint firstItem="V6U-z8-hwZ" firstAttribute="centerY" secondItem="397-ez-7lT" secondAttribute="centerY" id="Rwk-4p-yfp"/>
+                    <constraint firstItem="sJV-tU-tXk" firstAttribute="top" secondItem="YZK-oo-otV" secondAttribute="top" id="Vl3-zP-0l4"/>
+                    <constraint firstItem="397-ez-7lT" firstAttribute="bottom" secondItem="YZK-oo-otV" secondAttribute="bottom" id="a3w-v1-oJI"/>
+                    <constraint firstItem="sJV-tU-tXk" firstAttribute="leading" secondItem="YZK-oo-otV" secondAttribute="trailing" constant="10" id="aiy-gg-xFM"/>
+                    <constraint firstItem="YZK-oo-otV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="btv-LL-JKK"/>
+                    <constraint firstItem="YZK-oo-otV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="lQi-uD-BAN"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="attentionBtn" destination="DRe-Bn-s08" id="Wd2-l1-WT8"/>
+                <outlet property="avtaorView" destination="YZK-oo-otV" id="4Hs-9p-dQE"/>
+                <outlet property="inviteLabel" destination="397-ez-7lT" id="1V6-Oi-dKC"/>
+                <outlet property="nameLabel" destination="sJV-tU-tXk" id="uei-LZ-S2W"/>
+                <outlet property="timeLabel" destination="V6U-z8-hwZ" id="ls2-GM-7z5"/>
+            </connections>
+            <point key="canvasLocation" x="27" y="85"/>
+        </tableViewCell>
+    </objects>
+</document>

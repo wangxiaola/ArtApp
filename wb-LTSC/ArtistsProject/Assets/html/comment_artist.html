@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>艺术家评论</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="format-detection" content="telephone=no" />
+  <script src="js/fontbase.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/debug.css" rel="stylesheet">
+  <link href="css/common.css" rel="stylesheet">
+  <link href="css/detail.css" rel="stylesheet">
+  <link href="css/comment.css" rel="stylesheet">
+  <link href="css/artist_comment.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div ng-class="{'container':true,'container-theme-night':themeStyle}" ng-controller="MainCtrl">
+    <div infinite-scroll='loadMore()' infinite-scroll-disabled='!(canLoadMore && hasMoreComments)' infinite-scroll-distance='1'>
+      <div class="bs-docs-section">
+        <div class="artist-box">
+          <div class="artist-img-box">
+            <img src="{{personDetail.photo}}" alt="" class="artist-img">
+          </div>
+          <div class="artist-intro-box">
+            <div class="artist-name">{{personDetail.name}}</div>
+            <div class="artist-honors">
+              <div class="honor" ng-repeat="position in personDetail.artist_position track by $index">{{position}}</div>
+            </div>
+            <div class="visit-number-box">
+              <span>总访问人数:<span class="visit-number">{{personDetail.artist_view}}</span></span>
+              <span>总作品数:<span class="works-number">{{personDetail.work_num}}</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="tags-box">
+          <div class="tags-row">
+            <div ng-class="{'tag':true,'theme-night':themeStyle}" ng-repeat="keyword in personDetail.artist_keyword track by $index">{{keyword}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="total-upvoted-box left-right-align">
+        <div class="total-upvoted" ng-click="upvoteArticle(personDetail.is_praise);$event.stopPropagation();">
+          <span ng-class="{'upvoted-img':true,'praised':personDetail.is_praise}"></span>
+          <span class="total-upvoted-number">{{personDetail.praise}}</span>
+        </div>
+        <div class="expose">举报</div>
+      </div>
+      <div ng-class="{'comments-box hot-comments-box':true,'comments-theme-night':themeStyle}">
+        <div class="comment-title">
+          <img src="img/hot_comments@2x.png" alt="" class="comments-tag">
+        </div>
+        <div class="nomore-data" ng-if="hotCommentsList.length == 0">暂无跟帖数据</div>
+        <div class="comment" ng-repeat="comment in hotCommentsList track by $index" data-uid="{{comment.uid}}">
+          <div class="user-info-box left-right-align">
+            <div class="portal-box" ng-click="readUserinfo(comment.uid,comment.anonymity);$event.stopPropagation();">
+              <span ng-if="comment.anonymity == 0 && comment.avatar.length != 0" class="portal">
+                <img src="{{comment.avatar}}" alt="" ></span>
+              <span ng-if="comment.anonymity == 1 || comment.avatar.length == 0" class="portal">  <img  src="img/default.png" alt="" ></span>
+              <span class="user-name" ng-class="{'user-name-night':themeStyle}" ng-if="comment.anonymity == 0">{{comment.nickname}}</span>
+              <span class="user-name" ng-class="{'user-name-night':themeStyle}" ng-if="comment.anonymity == 1">匿名</span>
+            </div>
+            <div class="me-upvoted" ng-click="upvoteComment(comment);$event.stopPropagation();">
+              <span ng-class="{'upvoted-img':true,'praised':comment.is_praise}"></span>
+              <span class="total-upvoted-number">{{comment.praise}}</span>
+            </div>
+          </div>
+          <div class="user-comment-box">
+            <div class="comment-cont">
+              {{comment.comment_content}}
+            </div>
+            <div class="comment-published">
+              <span class="published-time">{{comment.comment_date}}</span>
+              <span class="reply-to" ng-click="replyComment(comment,'hotComment',comment.comment_id);$event.stopPropagation();">回复</span>
+            </div>
+            <div ng-class="{'comment-reply-box':true,'theme-night':themeStyle}" ng-if="comment.reply_comments.reply_comments_num > 0">
+              <div class="comment-reply" ng-repeat="reply in comment.reply_comments.items track by $index">
+                <p class="comment-reply-word">
+                  <span ng-if="reply.anonymity==0" class="comment-reply-name" ng-class="{'user-name-night':themeStyle}" ng-click="readUserinfo(reply.uid,reply.anonymity);$event.stopPropagation();">{{reply.nickname}}</span>
+                  <span ng-if="reply.anonymity==1" class="comment-reply-name" ng-class="{'user-name-night':themeStyle}" ng-click="readUserinfo(reply.uid,reply.anonymity);$event.stopPropagation();">匿名</span>
+                  <span ng-if="reply.to_comment_id != comment.comment_id"> 回复 </span>
+                  <span class="comment-reply-name" ng-class="{'user-name-night':themeStyle}" ng-if="reply.to_comment_id != comment.comment_id && reply.reply_anonymity==0" ng-click="readUserinfo(reply.to_uid,reply.reply_anonymity);$event.stopPropagation();">{{reply.reply_nickname}}</span>
+                  <span class="comment-reply-name" ng-class="{'user-name-night':themeStyle}" ng-if="reply.to_comment_id != comment.comment_id && reply.reply_anonymity==1" ng-click="readUserinfo(reply.to_uid,reply.reply_anonymity);$event.stopPropagation();">匿名</span>:
+                  <span ng-click="replyComment(reply,'hotComment',comment.comment_id);$event.stopPropagation();">{{reply.comment_content}}</span>
+                </p>
+              </div>
+              <span class="comment-reply-all" ng-show="comment.reply_comments.hasmore" ng-click="showAllReply(comment.comment_id,'hotComment');$event.stopPropagation();">查看全部{{comment.reply_comments.reply_comments_num}}条回复</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-class="{'comments-box':true,'comments-theme-night':themeStyle}">
+        <div class="comment-title">
+          <img src="img/new_comments@2x.png" alt="" class="comments-tag">
+        </div>
+        <div class="nomore-data" ng-if="commentsList.length == 0">暂无跟帖数据</div>
+        <div class="comment" ng-repeat="comment in commentsList track by $index" data-id="{{comment.uid}}">
+          <div class="user-info-box left-right-align">
+            <div class="portal-box" ng-click="readUserinfo(comment.uid,comment.anonymity);$event.stopPropagation();">
+              <span ng-if="comment.anonymity == 0 && comment.avatar.length != 0" class="portal"> <img  src="{{comment.avatar}}" alt="" ></span>
+              <span ng-if="comment.anonymity == 1 || comment.avatar.length == 0" class="portal"> <img  src="img/default.png" ></span>
+              <span class="user-name" ng-class="{'user-name-night':themeStyle}" ng-if="comment.anonymity == 0">{{comment.nickname}}</span>
+              <span class="user-name" ng-class="{'user-name-night':themeStyle}" ng-if="comment.anonymity == 1">匿名</span>
+            </div>
+            <div class="me-upvoted" ng-click="upvoteComment(comment);$event.stopPropagation();">
+              <span ng-class="{'upvoted-img':true,'praised':comment.is_praise}"></span>
+              <span class="total-upvoted-number">{{comment.praise}}</span>
+            </div>
+          </div>
+          <div class="user-comment-box">
+            <div class="comment-cont">
+              {{comment.comment_content}}
+            </div>
+            <div class="comment-published">
+              <span class="published-time">{{comment.comment_date}}</span>
+              <span class="reply-to" ng-click="replyComment(comment,'comment',comment.comment_id);$event.stopPropagation();">回复</span>
+            </div>
+            <div ng-class="{'comment-reply-box':true,'theme-night':themeStyle}" ng-if="comment.reply_comments.reply_comments_num > 0">
+              <div class="comment-reply" ng-repeat="reply in comment.reply_comments.items track by $index">
+                <p class="comment-reply-word">
+                  <span ng-if="reply.anonymity==0" class="comment-reply-name" ng-class="{'user-name-night':themeStyle}" ng-click="readUserinfo(reply.uid,reply.anonymity);$event.stopPropagation();">{{reply.nickname}}</span>
+                  <span ng-if="reply.anonymity==1" class="comment-reply-name" ng-class="{'user-name-night':themeStyle}" ng-click="readUserinfo(reply.uid,reply.anonymity);$event.stopPropagation();">匿名</span>
+                  <span ng-if="reply.to_comment_id != comment.comment_id"> 回复 </span>
+                  <span class="comment-reply-name" ng-class="{'user-name-night':themeStyle}" ng-if="reply.to_comment_id != comment.comment_id && reply.reply_anonymity==0" ng-click="readUserinfo(reply.to_uid,reply.reply_anonymity);$event.stopPropagation();">{{reply.reply_nickname}}</span>
+                  <span class="comment-reply-name" ng-class="{'user-name-night':themeStyle}" ng-if="reply.to_comment_id != comment.comment_id && reply.reply_anonymity==1" ng-click="readUserinfo(reply.to_uid,reply.reply_anonymity);$event.stopPropagation();">匿名</span> :
+                  <span ng-click="replyComment(reply,'comment',comment.comment_id);$event.stopPropagation();">{{reply.comment_content}}</span>
+                </p>
+              </div>
+              <span class="comment-reply-all" ng-show="comment.reply_comments.hasmore" ng-click="showAllReply(comment.comment_id,'comment');$event.stopPropagation();">查看全部{{comment.reply_comments.reply_comments_num}}条回复</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div id="comments">
+        <div class="row comment-row" ng-repeat="comment in comments track by $index">
+          <div class="col-sm-12" data-index="{{$index}}" ng-click="onClickComment();$event.stopPropagation();">
+            <div class="post_comment" style="">
+              <div class="headimg-container" ng-click="readUserinfo(comment.userid);$event.stopPropagation();">
+                <img alt="" class="headimg" data-id="{{comment.userid}}" src="{{comment.headimg}}">
+              </div>
+              <div class="comment-body" style="">
+                <div class="left-right-align">
+                  <div class="post-comment-name">{{comment.username}}</div>
+                  <div class="verticle-center-box title-right comment-item-right" data-id="{{comment.id}}" data-upvote="{{comment.upvoteStatus}}">
+                    <img class="upvote-comment" ng-click="upvoteComment($index);$event.stopPropagation();" width="13" height="15" src="img/upvote.png" />
+                    <div ng-click="upvoteComment($index);$event.stopPropagation();" class="gray-color div-inline num-upvote upvote-comment">{{comment.upvote}}</div>
+                    <img class="reply-comment" ng-click="replyComment(comment.userid, comment.username);$event.stopPropagation();" width="18" height="14" src="img/case_comment_top.png" />
+                    <div class="gray-color div-inline reply-comment"></div>
+                  </div>
+                </div>
+                <div class="post-time gray-color">{{comment.time}}</div>
+                <div class='comment-box'>
+                  <div class="comment-cont">{{comment.content}}</div>
+                </div>
+                <div class="reply">
+                  <div class="comment-over">更多</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="comment-loading" ng-show="loadMoreBusy">加载中...</div>
+      <div class="shown-all" ng-show="!(canLoadMore && hasMoreComments)">已显示全部评论</div>
+    </div>
+  </div>
+  <!-- <ion-infinite-scroll ng-if="canLoadMore && hasMoreComments" on-infinite="loadMore()" distance="1%" spinner="bubbles"> -->
+  <!-- </ion-infinite-scroll> -->
+  <!-- </ion-content> -->
+  <!-- ng-if="articleLoaded && hasMoreComments"-->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/lodash.min.js"></script>
+  <script src="js/debug.js"></script>
+  <script src="js/jsbridge.js"></script>
+  <script type="text/javascript" src="js/short_num.js"></script>
+  <script type="text/javascript">
+  var jsbridge = JSBridge({
+    connectApp: true
+  });
+  var app = {
+    artistComment: true,
+    comment: true
+  };
+  </script>
+  <script type="text/javascript" src="mock/articleDetailMock.js">
+  </script>
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/angular-route.min.js"></script>
+  <script type="text/javascript" src="js/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="js/ng-infinite-scroll.min.js"></script>
+  <script type="text/javascript" src="js/comment_artist.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+{
+    "meta": {
+        "schemaVer": 1,
+        "dataVer": 5
+    },
+    "payload": {
+        "USER_CENTER": {
+            "desc": "1.1.用户中心页面接口",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=User&a=getUserCenterApi"
+        },
+        "USER_LOGIN": {
+            "desc": "1.2.用户登陆接口",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=User&a=loginApi"
+        },
+        "USER_LOGINOUT": {
+            "desc": "1.3.用户退出登陆接口",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=User&a=logoutApi"
+        },
+        "USER_REGISTER": {
+            "desc": "1.4.用户注册页面接口",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=User&a=registerApi"
+        },
+        "USER_CAPTCHA": {
+            "desc": "1.5.获取验证码接口",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=User&a=captchaApi"
+        },
+        "USER_RESETPASSWORD": {
+            "desc": "1.6.修改密码",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=User&a=repasswordApi"
+        },
+        "USER_MODIFY_INFO": {
+            "desc": "1.7.更改个人信息",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=User&a=modifyUserInfoApi"
+        },
+        "USER_COMMENT_LIST": {
+            "desc": "1.8. 跟帖列表",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=User&a=getUserCommentListApi"
+        },
+        "USER_COLLECT_LIST": {
+            "desc": "1.9. 我的收藏列表",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=User&a=getUserCollectListApi"
+        },
+        "USER_UPLOAD_TOKEN": {
+            "desc": "1.10. 获得上传token信息",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=User&a=getUploadTokenApi"
+        },
+        "GET_ARTIST_LIST": {
+            "desc": "2.1. 人物首页接口",
+            "url" : "http://mock.benbun.com/meishubao-app/artist/get_artist_list"
+        },
+        "GET_ARTIST_DETAIL": {
+            "desc": "2.2. 人物详情接口",
+            "url" : "http://mock.benbun.com/meishubao-app/artist/get_artist_detail"
+        },
+        "SEARCH_ARTIST_LIST": {
+            "desc": "2.3. 人物搜索接口",
+            "url" : "http://mock.benbun.com/meishubao-app/artist/search_artist_list"
+        },
+        "GET_ORG_LIST": {
+            "desc": "3.1. 机构列表",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=Organization&a=getOrgListApi"
+        },
+        "SEARCH_ORG_LIST": {
+            "desc": "3.2. 搜索机构",
+            "url" : "http://mock.benbun.com/meishubao-app/organization/get_org_list"
+        },
+        "GET_MORE_ORG_LIST": {
+            "desc": "3.5. 更多机构列表接口",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=Organization&a=getMoreOrgListApi"
+        },
+        "POST_LIST": {
+            "desc": "4.1.文章列表",
+            "url" : "http://mock.benbun.com/meishubao-app/post/post_list"
+        },
+        "POST_DETAIL": {
+            "desc": "4.2.文章详情",
+            "url" : "http://mock.benbun.com/meishubao-app/post/post_detail"
+        },
+        "HOT_COMMENT": {
+            "desc": "4.3.文章热门评论",
+            "url" : "http://mock.benbun.com/meishubao-app/post/hot_comment"
+        },
+        "ALL_COMMENT": {
+            "desc": "4.4.文章全部评论",
+            "url" : "	http://mock.benbun.com/meishubao-app/post/all_comment"
+        },
+        "PUBLISH_COMMENT": {
+            "desc": "4.5.文章发表评论/回复评论",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=Post&a=publishCommentApi"
+        },
+        "POST_COLLECT": {
+            "desc": "4.6.文章收藏接口",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=Post&a=collectPostApi"
+        },
+        "COMMENT_PRAISE": {
+            "desc": "4.7.文章评论点赞接口",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=Post&a=praiseCommentApi"
+        },
+        "BANNER": {
+            "desc": "4.8.文章轮播图接口",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=Post&a=getBannerListApi"
+        },
+        "SEARCH_POST_LIST": {
+            "desc": "4.9.文章搜索列表",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=Post&a=searchPostListApi"
+        },
+        "POST_TERM_LIST": {
+            "desc": "4.10.页面顶部文章分类列表接口",
+            "url" : "http://mock.benbun.com/meishubao-app/post/post_term_list"
+        },
+        "GET_ROUND_TABLE": {
+            "desc": "4.11.圆桌会列表接口",
+            "url" : "http://dev.benbun.com/web/proj/meishubao/index.php?g=App&m=Post&a=getRoundTableApi"
+        }
+    }
+}

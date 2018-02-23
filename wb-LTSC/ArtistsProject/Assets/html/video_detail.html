@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>视频详情页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="format-detection" content="telephone=no" />
+  <script src="js/fontbase.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/debug.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/detail.css">
+  <link href="css/comment.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/video_detail.css">
+</head>
+
+<body>
+  <div class="video-container  container-theme-day" ng-controller="MainCtrl">
+    <div infinite-scroll='loadMore()' infinite-scroll-disabled='!(canLoadMore && hasMoreComments)' infinite-scroll-distance='1'>
+      <div class="video-title">{{videoDetail.video_title}}</div>
+      <div class="container video-box">
+        <div class="video-info">
+          <div class="video-des">
+            {{videoDetail.video_intro}}
+          </div>
+        </div>
+        <div class="correlation">
+          <ul class="correlation-video">
+            <li ng-repeat="item in correlation track by $index" class="corr-video-item" ng-click="correlationVideoClick(item.video_id,item.video)" data-uid="{{correlation.video_id}}">
+              {{item.video_title}}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div style="padding:0 10px;">
+        <div class="light-divider"></div>
+      </div>
+      <div class="comments-box hot-comments-box">
+        <div class="comment-title">
+          <img src="img/hot_comments@2x.png" alt="" class="comments-tag">
+        </div>
+        <!-- ngRepeat: comment in hotComments track by $index -->
+        <div class="comment" ng-repeat="comment in hotComments track by $index" data-uid="{{comment.uid}}" ng-click="hotCommentClick()">
+          <div class="user-info-box left-right-align">
+            <div class="portal-box">
+              <span class="portal" ng-if="comment.anonymity == 0 && comment.avatar.length != 0">  <img  src="{{comment.avatar}}" alt=""></span>
+              <span class="portal" ng-if="comment.anonymity == 1 || comment.avatar.length == 0"> <img  src="img/default.png" ></span>
+              <span class="user-name" ng-class="{'user-name-night':themeStyle}" ng-if="comment.anonymity == 0">{{comment.nickname}}</span>
+              <span class="user-name" ng-class="{'user-name-night':themeStyle}" ng-if="comment.anonymity == 1">匿名</span>
+            </div>
+          </div>
+          <div class="user-comment-box">
+            <div class="comment-cont ng-binding">
+              {{comment.comment_content}}
+            </div>
+            <div class="comment-published">
+              <span class="published-time ng-binding">{{comment.comment_date}}</span>
+              <span class="reply-to" ng-click="replyComment(comment.comment_id,'张三')">回复</span>
+            </div>
+          </div>
+          <div class="me-upvoted" ng-click="upvoteComment(comment.comment_id,hotComments,$event)">
+            <span ng-class="{'upvoted-img':true,'praised':comment.is_praise}"></span>
+            <span class="total-upvoted-number">{{comment.praise}}</span>
+          </div>
+        </div>
+        <!-- end ngRepeat: comment in hotComments track by $index -->
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/lodash.min.js"></script>
+  <script src="js/debug.js"></script>
+  <script src="js/jsbridge.js"></script>
+  <script type="text/javascript" src="js/short_num.js"></script>
+  <script type="text/javascript">
+  var jsbridge = JSBridge({
+    connectApp: true
+  });
+  var app = {
+    videoDetail: true,
+    comment: false
+  }
+  </script>
+  <script type="text/javascript" src="mock/articleDetailMock.js">
+  </script>
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/angular-route.min.js"></script>
+  <script type="text/javascript" src="js/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="js/ng-infinite-scroll.min.js"></script>
+  <script type="text/javascript" src="js/app_video_detail.js"></script>
+</body>
+
+</html>

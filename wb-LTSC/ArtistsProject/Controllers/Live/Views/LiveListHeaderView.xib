@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LiveListHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dje-r4-Ed6">
+                    <rect key="frame" x="15" y="10" width="110" height="29"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navi_menu" translatesAutoresizingMaskIntoConstraints="NO" id="HLE-4T-MfI">
+                            <rect key="frame" x="5" y="4.5" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="Dbc-8E-2NE"/>
+                                <constraint firstAttribute="width" secondItem="HLE-4T-MfI" secondAttribute="height" multiplier="1:1" id="uJh-lc-y0f"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="课 程 推 荐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82e-yW-Y2p">
+                            <rect key="frame" x="30" y="0.0" width="68" height="29"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.66274509800000003" green="0.12941176469999999" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="HLE-4T-MfI" firstAttribute="centerY" secondItem="dje-r4-Ed6" secondAttribute="centerY" id="7xk-m0-cmI"/>
+                        <constraint firstAttribute="width" constant="110" id="flR-LS-ZkY"/>
+                        <constraint firstItem="82e-yW-Y2p" firstAttribute="leading" secondItem="HLE-4T-MfI" secondAttribute="trailing" constant="5" id="hy9-67-Jra"/>
+                        <constraint firstItem="82e-yW-Y2p" firstAttribute="top" secondItem="dje-r4-Ed6" secondAttribute="top" id="i9H-xy-EmM"/>
+                        <constraint firstAttribute="bottom" secondItem="82e-yW-Y2p" secondAttribute="bottom" id="iEf-iv-Pwu"/>
+                        <constraint firstItem="HLE-4T-MfI" firstAttribute="leading" secondItem="dje-r4-Ed6" secondAttribute="leading" constant="5" id="iUQ-MT-48K"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y20-xO-Wbe">
+                    <rect key="frame" x="0.0" y="39" width="320" height="1"/>
+                    <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="sPn-cE-8Df"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="y20-xO-Wbe" secondAttribute="bottom" id="3wj-2b-S12"/>
+                <constraint firstItem="y20-xO-Wbe" firstAttribute="top" secondItem="dje-r4-Ed6" secondAttribute="bottom" id="BFh-fP-XIH"/>
+                <constraint firstItem="dje-r4-Ed6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Hgs-q3-cSG"/>
+                <constraint firstItem="y20-xO-Wbe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="N8s-lE-msK"/>
+                <constraint firstItem="dje-r4-Ed6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Z3Q-wJ-OF8"/>
+                <constraint firstAttribute="trailing" secondItem="y20-xO-Wbe" secondAttribute="trailing" id="ewl-bw-BWU"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageV" destination="HLE-4T-MfI" id="MU4-xO-QHp"/>
+                <outlet property="title" destination="82e-yW-Y2p" id="4Qd-RP-Mif"/>
+            </connections>
+            <point key="canvasLocation" x="-26" y="25"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="navi_menu" width="24" height="24"/>
+    </resources>
+</document>

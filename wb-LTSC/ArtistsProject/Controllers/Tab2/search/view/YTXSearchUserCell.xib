@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="58" id="KGk-i7-Jjw" customClass="YTXSearchUserCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6ZS-4A-mvh">
+                        <rect key="frame" x="13" y="13" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="cWI-RO-GBL"/>
+                            <constraint firstAttribute="width" constant="32" id="guN-eJ-c2u"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="范进" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQf-8h-BaY">
+                        <rect key="frame" x="50" y="13" width="27" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="Bom-c6-wEx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="玉器 瓷器 鉴定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="En9-rW-xQA">
+                        <rect key="frame" x="50" y="27" width="100" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fof-jH-Ix4">
+                        <rect key="frame" x="252" y="19" width="50" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="pm7-h0-tsE"/>
+                            <constraint firstAttribute="width" constant="50" id="zWI-Ud-Hm9"/>
+                        </constraints>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="6ZS-4A-mvh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="0ya-AW-GU6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Fof-jH-Ix4" secondAttribute="trailing" constant="10" id="64a-e7-GWs"/>
+                    <constraint firstItem="Fof-jH-Ix4" firstAttribute="centerY" secondItem="6ZS-4A-mvh" secondAttribute="centerY" id="6qT-Yk-BHz"/>
+                    <constraint firstItem="VQf-8h-BaY" firstAttribute="top" secondItem="6ZS-4A-mvh" secondAttribute="top" id="GSv-dV-wRd"/>
+                    <constraint firstItem="En9-rW-xQA" firstAttribute="leading" secondItem="VQf-8h-BaY" secondAttribute="leading" id="Sqd-9e-SQX"/>
+                    <constraint firstItem="En9-rW-xQA" firstAttribute="bottom" secondItem="6ZS-4A-mvh" secondAttribute="bottom" id="bHW-dW-VPs"/>
+                    <constraint firstItem="VQf-8h-BaY" firstAttribute="leading" secondItem="6ZS-4A-mvh" secondAttribute="trailing" constant="5" id="bpU-be-DAu"/>
+                    <constraint firstItem="6ZS-4A-mvh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="qvJ-ZD-hdT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="attentionBtn" destination="Fof-jH-Ix4" id="mCW-w7-936"/>
+                <outlet property="avactorView" destination="6ZS-4A-mvh" id="fJc-rF-81a"/>
+                <outlet property="nameLabel" destination="VQf-8h-BaY" id="fNy-JM-D3P"/>
+                <outlet property="tagLabel" destination="En9-rW-xQA" id="1MW-b7-kIY"/>
+            </connections>
+            <point key="canvasLocation" x="32" y="122"/>
+        </tableViewCell>
+    </objects>
+</document>

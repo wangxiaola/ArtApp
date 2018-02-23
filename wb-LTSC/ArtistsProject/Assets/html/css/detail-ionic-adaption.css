@@ -1,0 +1,38 @@
+/* ionic 版本 start */
+body {
+  line-height: 1.42857143;
+  color: #333;
+}
+
+.row, .col {
+  padding: 0px;
+}
+
+.row + .row {
+  margin-top: 0px;
+}
+.bs-docs-section .row .col {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.post-author-time-bar {
+  text-align: right;
+  margin-bottom: 18px;
+  margin-top: 8px;
+}
+
+#comment-section .row {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.total-comment-text {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+#comments {
+  margin-top: 0px;
+}
+/* ionic 版本兼容 end */
